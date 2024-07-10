@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot</title>
+    <style>
+        #chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #chatbot-header {
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #chatbot-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        #chatbot-input {
+            display: flex;
+        }
+
+        #chatbot-input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-top: 1px solid #ddd;
+        }
+
+        #chatbot-input button {
+            padding: 10px;
+            border: none;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="chatbot">
+        <div id="chatbot-header">Chatbot</div>
+        <div id="chatbot-messages"></div>
+        <div id="chatbot-input">
+            <input type="text" id="chatbot-input-text" placeholder="Escribe un mensaje...">
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var input = document.getElementById('chatbot-input-text');
+            var message = input.value;
+            if (message.trim() !== "") {
+                displayMessage('user', message);
+                input.value = '';
+                setTimeout(function() {
+                    displayMessage('bot', 'Este es un mensaje de respuesta.');
+                }, 1000);
+            }
+        }
+
+        function displayMessage(sender, message) {
+            var messageContainer = document.createElement('div');
+            messageContainer.textContent = message;
+            messageContainer.style.padding = '10px';
+            messageContainer.style.margin = '10px 0';
+            messageContainer.style.borderRadius = '5px';
+            if (sender === 'user') {
+                messageContainer.style.background = '#007bff';
+                messageContainer.style.color = 'white';
+                messageContainer.style.alignSelf = 'flex-end';
+            } else {
+                messageContainer.style.background = '#f5f5f5';
+                messageContainer.style.border = '1px solid #ddd';
+                messageContainer.style.alignSelf = 'flex-start';
+            }
+            document.getElementById('chatbot-messages').appendChild(messageContainer);
+            document.getElementById('chatbot-messages').scrollTop = document.getElementById('chatbot-messages').scrollHeight;
+        }
+    </script>
+</body>
+</html>
