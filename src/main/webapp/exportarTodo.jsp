@@ -19,7 +19,7 @@
 
 <%
     if ("POST".equalsIgnoreCase(request.getMethod())) {
-        String url = "jdbc:mysql://localhost:3307/almacen";
+        String url = "jdbc:mysql://localhost:3306/almacen";
         String user = "root";
         String password = "";
 

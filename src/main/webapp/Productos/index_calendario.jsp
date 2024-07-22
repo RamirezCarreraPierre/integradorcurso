@@ -11,12 +11,38 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
         <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
+        <style>
+            .social-icons {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: fixed; /* Mantener la posición en la pantalla */
+                right: 10px; /* Ajusta la posición a tu gusto */
+                bottom: 10px; /* Ajusta la posición a tu gusto */
+            }
+            .social-icons a {
+                width: 60px;
+                height: 60px;
+                line-height: 60px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 10px; /* Espacio entre íconos */
+                background-color: #007bff; /* Color de fondo */
+                border-radius: 50%; /* Hacer los botones redondeados */
+                color: white; /* Color del ícono */
+                text-decoration: none; /* Quitar subrayado del enlace */
+            }
+            .social-icons a i {
+                font-size: 24px; /* Tamaño del ícono */
+            }
+        </style>
     </head>
     <body>
 
@@ -220,10 +246,20 @@
                                         </button>                           
                                     </form>
                                 </div>
-                                <a href="https://wa.me/51922640415?text=Hola,%20quiero%20más%20información%20sobre%20sus%20servicios" class="btn btn-lg btn-primary rounded-circle back-to-top" 
-                                   style="width: 60px; height: 60px; line-height: 70px; display: flex; justify-content: center; align-items: center; margin-bottom: 70px;">
-                                    <i class="fab fa-whatsapp" style="font-size: 40px;"></i>
-                                </a>        <!-- Chatbot HTML code here -->
+                                <div class="social-icons">
+                                    <a href="https://wa.me/51922640415?text=Hola,%20quiero%20más%20información%20sobre%20sus%20servicios">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                    <a href="https://www.facebook.com/pierre.carrera.351">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="https://www.tiktok.com/@pierre.idk19">
+                                        <i class="fab fa-tiktok"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/pierre.idk19">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>           <!-- Chatbot HTML code here -->
                                 <div id="chatbot">
                                     <div id="chatbot-header">Chatbot</div>
                                     <div id="chatbot-messages"></div>

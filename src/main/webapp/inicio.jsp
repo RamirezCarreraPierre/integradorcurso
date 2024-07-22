@@ -168,7 +168,7 @@
                             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                                 <a href="#" class="dropdown-item">Mi Perfil</a>
                                 <a href="#" class="dropdown-item">Configuración</a>
-                                <a href="InicioController?accion=inicio" class="dropdown-item">Cerrar Sesión</a>
+                                <a href="index.jsp" class="dropdown-item">Cerrar Sesión</a>
                             </div>
                         </div>
                     </div>
@@ -225,7 +225,7 @@
         <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
         <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
         <%
-            String url = "jdbc:mysql://localhost:3307/almacen";
+            String url = "jdbc:mysql://localhost:3306/almacen";
             String user = "root";
             String password = "";
 

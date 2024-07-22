@@ -14,7 +14,7 @@
 </head>
 <body>
 <%
-    String url = "jdbc:mysql://localhost:3307/almacen";
+    String url = "jdbc:mysql://localhost:3306/almacen";
     String username = "root";
     String password = "";
 

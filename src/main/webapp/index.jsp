@@ -8,7 +8,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
         <script src="js/main.js" type="text/javascript"></script>
         <link href="img/Logo_Unico.ico" rel="icon">
 
@@ -23,47 +22,65 @@
         <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
         <link href="css/bootstrap.min.css" rel="stylesheet">
-
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
         <div class="container">
             <%
-                String url = "jdbc:mysql://localhost:3307/almacen";
-                String username = "root";
-                String password = "";
+                String url = "jdbc:mysql://localhost:3306/almacen";
+                String dbUsername = "root";
+                String dbPassword = "";
 
                 String email = request.getParameter("email");
                 String passwordInput = request.getParameter("password");
 
                 boolean isValidLogin = false;
+                String message = "";
 
                 if (email != null && passwordInput != null) {
+                    Connection conn = null;
+                    PreparedStatement pstmt = null;
+                    ResultSet rs = null;
                     try {
-                        Connection conn = DriverManager.getConnection(url, username, password);
+                        // Cargar el driver JDBC
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                        
+                        // Conectar a la base de datos
+                        conn = DriverManager.getConnection(url, dbUsername, dbPassword);
 
+                        // Preparar la consulta SQL
                         String sql = "SELECT * FROM usuarios WHERE correo = ? AND contraseña = ?";
-                        PreparedStatement pstmt = conn.prepareStatement(sql);
+                        pstmt = conn.prepareStatement(sql);
                         pstmt.setString(1, email);
                         pstmt.setString(2, passwordInput);
-                        ResultSet rs = pstmt.executeQuery();
+                        
+                        // Ejecutar la consulta
+                        rs = pstmt.executeQuery();
 
+                        // Verificar si se encontró el usuario
                         if (rs.next()) {
                             isValidLogin = true;
+                        } else {
+                            message = "Correo o contraseña incorrectos.";
                         }
-
-                        rs.close();
-                        pstmt.close();
-                        conn.close();
-                    } catch (SQLException e) {
+                    } catch (SQLException | ClassNotFoundException e) {
                         e.printStackTrace();
+                        message = "Error en la base de datos: " + e.getMessage();
+                    } finally {
+                        // Cerrar recursos
+                        try {
+                            if (rs != null) rs.close();
+                            if (pstmt != null) pstmt.close();
+                            if (conn != null) conn.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
                     }
 
+                    // Redirigir al usuario según el resultado del login
                     if (isValidLogin) {
                         response.sendRedirect("inicio.jsp");
-                        return; 
-                    } else {
-                        response.sendRedirect("inicio.jsp");
+                        return;
                     }
                 }
             %>
@@ -86,10 +103,15 @@
                                 <input type="password" class="form-control" id="password" name="password" required>
                             </div>
                             <div class="d-flex align-items-center justify-content-between mb-4">
-                                <a href="">Olvide mi contraseña</a>
-                            </div>                                
+                                <a href="OlvideContraseña.jsp">Olvidé mi contraseña</a>
+                            </div>                              
                             <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
                         </form>
+                        <% if (!message.isEmpty()) { %>
+                            <div class="alert alert-danger mt-3" role="alert">
+                                <%= message %>
+                            </div>
+                        <% } %>
                     </div>
                 </div>
             </div>

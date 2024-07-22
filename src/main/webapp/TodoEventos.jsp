@@ -1,3 +1,4 @@
+<%@page import="com.itextpdf.layout.properties.UnitValue"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
@@ -8,7 +9,6 @@
 <%@page import="com.itextpdf.layout.element.Paragraph"%>
 <%@page import="com.itextpdf.layout.element.Table"%>
 <%@page import="com.itextpdf.layout.element.Cell"%>
-<%@page import="com.itextpdf.layout.property.UnitValue"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -36,7 +36,7 @@
 <h2>Lista de Productos</h2>
 
 <%
-    String url = "jdbc:mysql://localhost:3307/almacen";
+    String url = "jdbc:mysql://localhost:3306/almacen";
     String username = "root";
     String password = "";
 
